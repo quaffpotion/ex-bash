@@ -1,0 +1,3 @@
+# ex-bash
+
+Misc scripts

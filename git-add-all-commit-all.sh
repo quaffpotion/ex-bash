@@ -11,6 +11,10 @@ fn prettyprint() {
 	echo  $sc$1$sdc
 }
 alias pp=prettyprint
+
+#usage: ggc "your-commit-message"
+# Adds all files, commits, pushes with some error handling
+
 fn ggc() {
 	if [ $# = 0 ] ; then
 		echo "$(tput setab 1)$(tput setaf 7)\nNo commit message received" 

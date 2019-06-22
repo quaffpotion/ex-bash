@@ -16,6 +16,7 @@ alias pp=prettyprint
 # Adds all files, commits, pushes with some error handling
 
 fn ggc() {
+	# $# for number of arguments paseed to ggc
 	if [ $# = 0 ] ; then
 		echo "$(tput setab 1)$(tput setaf 7)\nNo commit message received" 
 		return 1
@@ -31,6 +32,7 @@ fn ggc() {
 
 	pp "\nCommitting with message \"$1\"..."
 	git commit -m $1
+	# $? for exit status of last command
 	if [ $? = 0 ] ; then
 		echo "$(tput setab 2)$(tput setaf 0)\nSuccessfully committed changes$(tput sgr0)"
 		pp "\nPushing commit..."

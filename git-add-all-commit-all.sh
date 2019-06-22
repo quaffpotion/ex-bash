@@ -10,7 +10,10 @@ fn ggc() {
 	pp "\nadding files..."
 	git add -A
 	pp "\nchecking after..."
-	git status
+	if git status | grep -q "nothing" ; then
+                  echo "$(tput setab 1)$(tput setaf 7)\nNothing new to commit$(tput sgr0)"
+                  return 1
+        fi
 	pp "\ncommitting with message $1..."
 	git commit -m $1
 	#Here $? contains the exit status of the last commmand; 0 is success anything else is failure

@@ -1,3 +1,16 @@
+sf=$(tput setaf 0)
+sb=$(tput setab 4)
+
+#sc for set colors
+sc=$sf$sb
+
+#sdc for set default colors
+sdc=$(tput sgr0)
+
+fn prettyprint() {
+	echo  $sc$1$sdc
+}
+alias pp=prettyprint
 fn ggc() {
 	if [ $# = 0 ] ; then
 		echo "$(tput setab 1)$(tput setaf 7)\nNo commit message received" 

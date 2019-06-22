@@ -1,27 +1,23 @@
 fn ggc() {
-	#Here $# holds number of arguments passed to function
 	if [ $# = 0 ] ; then
-		#Here $(tput setab 1) expands to a color code
 		echo "$(tput setab 1)$(tput setaf 7)\nNo commit message received" 
 		return 1
 	fi
-	pp "\nchecking before..."
-	git status 
-	pp "\nadding files..."
+	pp "\nAdding files..."
 	git add -A
-	pp "\nchecking after..."
+	pp "\nChecking after..."
+	git status
 	if git status | grep -q "nothing" ; then
-                  echo "$(tput setab 1)$(tput setaf 7)\nNothing new to commit$(tput sgr0)"
-                  return 1
-        fi
-	pp "\ncommitting with message $1..."
+		echo "$(tput setab 1)$(tput setaf 7)\nNothing new to commit$(tput sgr0)"
+		return 1
+	fi
+
+	pp "\nCommitting with message \"$1\"..."
 	git commit -m $1
-	#Here $? contains the exit status of the last commmand; 0 is success anything else is failure
 	if [ $? = 0 ] ; then
-		#Here $(tput sgr0) expands to default color codes
 		echo "$(tput setab 2)$(tput setaf 0)\nSuccessfully committed changes$(tput sgr0)"
-		pp "\npushing commit..."
-		if git push origin ; then
+		pp "\nPushing commit..."
+		if git push origin; then
 			echo "$(tput setab 2)$(tput setaf 0)\nSuccessfully pushed changes$(tput sgr0)"
 			return 0
 		else
